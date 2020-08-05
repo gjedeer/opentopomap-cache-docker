@@ -5,15 +5,11 @@ A simple tilecache written in Apache and PHP.
 Apache directly serves locally cached tiles.
 PHP requests new tiles from providers and caches them locally.
 
-
-## Installation Note
+## Install
 
 ```bash
-# Allow the installation folder to be owned by the website user so that new tile layers can be added:
-chown www-data .
-# Group writable so that updating will work
-chmod g+w .
+docker build -t otm-mirror .
+docker run -p 8080:80 otm-mirror
 ```
 
-If using scaling, ensure the PHP imagick extension is loaded.
-
+And the tiles are available at URLs like http://localhost:8080/11/1089/563.png . You probably want to put nginx with SSL in front of it.
