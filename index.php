@@ -75,6 +75,7 @@ function error404 ($message = '404 Resource not found')
 {
 	header ('HTTP/1.0 404 Not Found');
 	echo $message;
+	print_r($_GET);
 	error_log ($message);
 	return false;
 }
@@ -151,7 +152,7 @@ function cacheTile ($binary, $layer, $path, $location)
 	}
 	
 	# Ensure the directory for the file exists
-	$directory = $cache . $layer . $path;
+	$directory = $cache . $path;
 	if (!is_dir ($directory)) {
 		mkdir ($directory, 0777, true);
 	}
@@ -163,7 +164,7 @@ function cacheTile ($binary, $layer, $path, $location)
 	}
 	
 	# Save the file to disk
-	$file = $cache . $layer . $location;
+	$file = $cache . $location;
 	file_put_contents ($file, $binary);
 	
 	# Signal success by returning the filename
@@ -206,6 +207,7 @@ if ($upscale) {
 # Send cache headers; see https://developers.google.com/speed/docs/best-practices/caching
 header ('Expires: ' . gmdate ('D, d M Y H:i:s', strtotime ("+{$expiryDays} days")) . ' GMT');
 header ('Last-Modified: ' . gmdate ('D, d M Y H:i:s'));
+header ('Age: 0');
 
 # Serve the file
 echo $binary;

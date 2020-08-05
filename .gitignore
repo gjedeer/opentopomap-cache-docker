@@ -11,3 +11,5 @@
 !nulltile.xcf
 !robots.txt
 !favicon.ico
+!Dockerfile
+!docker-*
