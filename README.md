@@ -12,4 +12,10 @@ docker build -t otm-mirror .
 docker run -p 8080:80 otm-mirror
 ```
 
+or:
+
+```bash
+docker run -p 8080:80 gdr1/opentopomap-cache
+```
+
 And the tiles are available at URLs like http://localhost:8080/11/1089/563.png . You probably want to put nginx with SSL in front of it.
